@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 
+//Components
+import Map from './Map';
+
 class App extends Component {
   render() {
     return (
-      <p>Hello there</p>
-    );
+      <Map
+        loadingElement={<div style={{ height: `100%`}} />}
+        containerElement={<div style={{ height: `100vh` }} /> }
+        mapElement={<div style={{ height: `100%` }} /> }
+      />
+    )
   }
 }
 
