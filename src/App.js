@@ -11,14 +11,8 @@ import Map from './Map';
 class App extends Component {
   state = {
     isListShowing: true,
-    isOpen: false,
-    query: ''
-  }
-
-  updateQuery = (query) => {
-    this.setState({
-      query: query
-    })
+    query: '',
+    selectedMarker: null
   }
 
   toggleList = () => {
@@ -27,9 +21,23 @@ class App extends Component {
     }))
   }
 
+  updateQuery = (query) => {
+    this.setState({
+      query: query
+    })
+  }
+
+  selectMarker = (marker) => {
+    if (marker == null) {
+      this.setState({ selectedMarker: null })
+      return
+    }
+    this.setState({ selectedMarker: marker })
+  }
+
   render() {
     const { places } = this.props
-    const { isListShowing, isOpen, query } = this.state;
+    const { isListShowing, query, selectedMarker } = this.state;
     // Filter our places matching the search query
     let showingPlaces;
     if (query) {
@@ -52,7 +60,8 @@ class App extends Component {
           )}
         <Map
           places={showingPlaces}
-          isOpen={this.state.isOpen}
+          selectedMarker={selectedMarker}
+          onSelectMarker={this.selectMarker}
           loadingElement={<div style={{ height: `100%`}} />}
           containerElement={<div style={{ height: `89vh` }} /> }
           mapElement={<div style={{ height: `100%` }} /> }
