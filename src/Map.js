@@ -23,8 +23,6 @@ class Map extends Component {
           position={place.position}
         />
       ))}
-      <InfoWindow
-        />
       </GoogleMap>
     )
   }

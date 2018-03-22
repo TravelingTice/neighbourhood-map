@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
-class ListBtn extends Component {
-  render() {
-    return (
-      <button className="hide-list-btn">Hide list</button>
-    )
-  }
+function ListBtn(props) {
+  return (
+    <button className="hide-list-btn" onClick={() => { props.toggleList()}}>Hide list</button>
+  )
 }
 
 export default ListBtn
