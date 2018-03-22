@@ -12,9 +12,9 @@ class App extends Component {
     query: ''
   }
 
-  updateQuery = (e) => {
+  updateQuery = (query) => {
     this.setState({
-      query: e
+      query: query
     })
   }
 
