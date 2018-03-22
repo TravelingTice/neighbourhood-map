@@ -19,6 +19,7 @@ class App extends Component {
 
   render() {
     const places = this.props.places;
+    const { isListShowing, isOpen } = this.state;
 
     return (
       <div className="container">
@@ -26,8 +27,10 @@ class App extends Component {
         <ListBtn
           toggleList={this.toggleList}
           isListShowing={this.state.isListShowing}/>
-        <List
-          places={places}/>
+          {isListShowing && (
+            <List
+              places={places}/>
+          )}
         <Map
           places={places}
           isOpen={this.state.isOpen}
