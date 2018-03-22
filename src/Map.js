@@ -8,11 +8,23 @@ import {
 
 class Map extends Component {
   render () {
+    // Object destructuring
+    const { places } = this.props;
+
     return (
       <GoogleMap
-        defaultZoom={12}
-        defaultCenter={{ lat: 52.184682, lng: 4.471170 }}
+        defaultZoom={13}
+        defaultCenter={{ lat: 52.185150, lng: 4.432546 }}
       >
+      {places.map(place => (
+        <Marker
+          key={place.name}
+          title={place.name}
+          position={place.position}
+        />
+      ))}
+      <InfoWindow
+        />
       </GoogleMap>
     )
   }
