@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-//Components
+// Npm packages
+import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
+// Components
 import Heading from './Heading';
 import ListBtn from './ListBtn';
 import List from './List';
@@ -25,9 +28,16 @@ class App extends Component {
   }
 
   render() {
-    const places = this.props.places;
+    const { places } = this.props
     const { isListShowing, isOpen, query } = this.state;
-
+    // Filter our places matching the search query
+    let showingPlaces;
+    if (query) {
+      const match = new RegExp(escapeRegExp(query), 'i');
+      showingPlaces = places.filter(place => match.test(place.name));
+    } else {
+      showingPlaces = places;
+    }
     return (
       <div className="container">
         <Heading/>
@@ -38,10 +48,10 @@ class App extends Component {
             <List
               updateQuery={this.updateQuery}
               query={query}
-              places={places}/>
+              places={showingPlaces}/>
           )}
         <Map
-          places={places}
+          places={showingPlaces}
           isOpen={this.state.isOpen}
           loadingElement={<div style={{ height: `100%`}} />}
           containerElement={<div style={{ height: `89vh` }} /> }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 // Components
-import Place from './Place'
+import Place from './Place';
 
 class List extends Component {
   render() {
     const { updateQuery, query, places } = this.props
+
     return (
       <div className="list">
         <div className="search">
