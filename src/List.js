@@ -4,14 +4,15 @@ import Place from './Place'
 
 class List extends Component {
   render() {
+    const { updateQuery, query, places } = this.props
     return (
       <div className="list">
         <div className="search">
-          <input type="text"/>
+          <input onChange={(e) => {updateQuery(e.target.value)}} type="text"/>
         </div>
         <div className="places-list">
           <ul>
-            {this.props.places.map((place, index) => (
+            {places.map((place, index) => (
               <Place
                 key={index}
                 place={place}/>

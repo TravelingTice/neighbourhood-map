@@ -8,7 +8,14 @@ import Map from './Map';
 class App extends Component {
   state = {
     isListShowing: true,
-    isOpen: false
+    isOpen: false,
+    query: ''
+  }
+
+  updateQuery = (e) => {
+    this.setState({
+      query: e
+    })
   }
 
   toggleList = () => {
@@ -19,7 +26,7 @@ class App extends Component {
 
   render() {
     const places = this.props.places;
-    const { isListShowing, isOpen } = this.state;
+    const { isListShowing, isOpen, query } = this.state;
 
     return (
       <div className="container">
@@ -29,13 +36,15 @@ class App extends Component {
           isListShowing={this.state.isListShowing}/>
           {isListShowing && (
             <List
+              updateQuery={this.updateQuery}
+              query={query}
               places={places}/>
           )}
         <Map
           places={places}
           isOpen={this.state.isOpen}
           loadingElement={<div style={{ height: `100%`}} />}
-          containerElement={<div style={{ height: `100vh` }} /> }
+          containerElement={<div style={{ height: `89vh` }} /> }
           mapElement={<div style={{ height: `100%` }} /> }
         />
       </div>

@@ -18,3 +18,7 @@ REQUIREMENTS:
     - no negative repercussions to UI
     - Also errors when 3rd party APIS cant be reached!
   8. Make sure it's responsive
+
+  TODO:
+  1. Add tabindex to list of places
+  2. Add ARIA roles
