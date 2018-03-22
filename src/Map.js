@@ -10,7 +10,7 @@ import {
 class Map extends Component {
   render () {
     // Object destructuring
-    const { places, selectedMarker, onSelectMarker } = this.props;
+    const { places, selectedPlace, onSelectPlace } = this.props;
     return (
       <GoogleMap
         defaultZoom={12}
@@ -21,14 +21,14 @@ class Map extends Component {
           key={place.name}
           title={place.name}
           position={place.position}
-          onClick={(e) => { onSelectMarker(e) }}
+          onClick={() => { onSelectPlace(place) }}
         />
       ))}
-      {selectedMarker && (
+      {selectedPlace && (
         <InfoWindow
-          position={{ lat: selectedMarker.latLng.lat(), lng: selectedMarker.latLng.lng() }}
+          position={{ lat: selectedPlace.position.lat, lng: selectedPlace.position.lng }}
           options={{pixelOffset: new google.maps.Size(-2,-40)}}
-          onCloseClick={() => { onSelectMarker(null) }}>
+          onCloseClick={() => { onSelectPlace(null) }}>
           <div>Hey</div>
         </InfoWindow>
       )}

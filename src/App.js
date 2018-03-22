@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     isListShowing: true,
     query: '',
-    selectedMarker: null
+    selectedPlace: null
   }
 
   toggleList = () => {
@@ -27,17 +27,17 @@ class App extends Component {
     })
   }
 
-  selectMarker = (marker) => {
-    if (marker == null) {
-      this.setState({ selectedMarker: null })
+  selectPlace = (place) => {
+    if (place == null) {
+      this.setState({ selectedPlace: null })
       return
     }
-    this.setState({ selectedMarker: marker })
+    this.setState({ selectedPlace: place })
   }
 
   render() {
     const { places } = this.props
-    const { isListShowing, query, selectedMarker } = this.state;
+    const { isListShowing, query, selectedPlace } = this.state;
     // Filter our places matching the search query
     let showingPlaces;
     if (query) {
@@ -56,12 +56,13 @@ class App extends Component {
             <List
               updateQuery={this.updateQuery}
               query={query}
-              places={showingPlaces}/>
+              places={showingPlaces}
+              selectedPlace={selectedPlace}/>
           )}
         <Map
           places={showingPlaces}
-          selectedMarker={selectedMarker}
-          onSelectMarker={this.selectMarker}
+          selectedPlace={selectedPlace}
+          onSelectPlace={this.selectPlace}
           loadingElement={<div style={{ height: `100%`}} />}
           containerElement={<div style={{ height: `89vh` }} /> }
           mapElement={<div style={{ height: `100%` }} /> }
