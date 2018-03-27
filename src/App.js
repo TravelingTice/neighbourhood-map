@@ -31,7 +31,8 @@ class App extends Component {
   }
 
   selectPlace = (place) => {
-    if (place == null) {
+    // Close place if place is null or marker is clicked on again.
+    if (place == null || place === this.state.selectedPlace) {
       this.setState({ selectedPlace: null })
       return
     }
@@ -48,7 +49,12 @@ class App extends Component {
       place.wikiHref = data[3][0];
       place.wikiDesc = data[2][0];
   }).catch(err => {
+    // When an error occurs, the user will be notified by displaying a custom error message in the infowindow
+    place.wikiHref = 'https://www.wikipedia.org/';
+    place.wikiDesc = 'Sorry, the Request to WikiPedia has failed, try again later! Error message: ' + err;
+    place.wikiImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Article_icon_cropped.svg/512px-Article_icon_cropped.svg.png';
     console.log('Error', err)
+    this.setState({ selectedPlace: place })
   })
   // Second request = image
   const url2 = `https://${place.wikiLang}.wikipedia.org/w/api.php?action=query&&origin=*&format=json&prop=pageimages&generator=prefixsearch&redirects=1&formatversion=2&piprop=thumbnail&pithumbsize=250&pilimit=20&gpssearch=${place.wikiName}&gpslimit=20`
@@ -61,6 +67,10 @@ class App extends Component {
     } else {
       place.wikiImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Article_icon_cropped.svg/512px-Article_icon_cropped.svg.png';
     }
+    this.setState({ selectedPlace: place })
+  }).catch(err => {
+    place.wikiImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Article_icon_cropped.svg/512px-Article_icon_cropped.svg.png';
+    console.log('Error', err)
     this.setState({ selectedPlace: place })
   })
 }
@@ -75,6 +85,9 @@ class App extends Component {
     } else {
       showingPlaces = places;
     }
+
+    showingPlaces.sort(sortBy('name'))
+
     return (
       <div className="container">
         <Heading/>

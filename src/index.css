@@ -3,6 +3,7 @@ body {
   padding: 0;
   height: 100%;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 header {
@@ -15,13 +16,13 @@ header {
 
 header h1 {
   margin: auto;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .hide-list-btn {
   position: absolute;
   z-index: 1;
-  top: 150px;
+  top: 170px;
   left: 10px;
   background-color: rgba(0,0,0,0.8);
   border: 2px solid white;
@@ -29,7 +30,6 @@ header h1 {
   color: white;
   border-radius: 5px;
   padding: 5px;
-  font-size: 20px;
 }
 
 .list {
@@ -38,7 +38,8 @@ header h1 {
   background-color: rgba(0,0,0,0.8);
   border-radius: 5px;
   padding: 10px;
-  top: 200px;
+  max-width: 165px;
+  top: 205px;
   left: 10px;
   color: white;
   border: 2px solid white;
@@ -46,18 +47,20 @@ header h1 {
 }
 
 .list .search input {
-  width: 200px;
+  width: 160px;
 }
 
 .list ul {
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   list-style: none;
   text-align: center;
-  padding: 5px;
+  padding: 0;
+  max-height: 350px;
+  overflow-y: scroll;
 }
 
 .list ul li {
-  padding: 7px;
+  padding: 7px 0;
   cursor: pointer;
 }
 
@@ -72,8 +75,49 @@ header h1 {
 .infowindow {
   max-width: 250px;
   font-size: 14px;
+  font-weight: 500;
+}
+
+.infowindow .credits {
+  font-size: 11px;
+}
+
+.infowindow .credits a {
+  text-decoration: none;
 }
 
 .infowindow img {
   max-width: 250px;
+  max-height: 200px;
+}
+
+/* media queries */
+@media screen and (min-width: 565px) {
+  body {
+    font-size: 16px;
+  }
+  header h1 {
+    font-size: 40px;
+  }
+  .hide-list-btn {
+    font-size: 15px;
+  }
+  .list ul {
+    padding: 5px;
+  }
+}
+
+@media screen and (min-width: 762px) {
+  .hide-list-btn {
+    top: 115px;
+  }
+  .list {
+    top: 155px;
+  }
+  .list .search input {
+    width: 200px;
+  }
+  .list {
+    max-width: 210px;
+  }
 }

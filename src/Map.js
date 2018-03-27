@@ -11,17 +11,28 @@ class Map extends Component {
   render () {
     // Object destructuring
     const { places, selectedPlace, onSelectPlace } = this.props;
+    // Get center position of selected place, when there is one
+    let centerPos = {
+      lat: 52.190810, lng: 4.441904
+    }
+    if (selectedPlace) {
+      centerPos.lat = selectedPlace.position.lat
+      centerPos.lng = selectedPlace.position.lng
+    }
     return (
       <GoogleMap
         defaultZoom={12}
-        defaultCenter={{ lat: 52.185150, lng: 4.422546 }}
+        ref={(map) => map && map.panTo({lat: centerPos.lat, lng: centerPos.lng })}
       >
       {places.map(place => (
         <Marker
+          animation={place === selectedPlace ? google.maps.Animation.BOUNCE : null}
           key={place.name}
           title={place.name}
           position={place.position}
-          onClick={() => { onSelectPlace(place) }}
+          onClick={(marker) => {
+            onSelectPlace(place);
+          }}
         />
       ))}
       {selectedPlace && (
@@ -34,6 +45,7 @@ class Map extends Component {
               <img src={selectedPlace.wikiImg} alt=""></img>
               <p>{selectedPlace.wikiDesc}</p>
               <a href={selectedPlace.wikiHref} target="_blank">Go To the Wikipedia page</a>
+              <p className="credits">Made possible by the <a href="https://www.mediawiki.org/wiki/API:Main_page">WikiPedia API</a></p>
             </div>
           </div>
         </InfoWindow>
