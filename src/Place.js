@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Place extends Component {
   render() {
-    const { place, selectedPlace } = this.props
+    const { place, selectedPlace, onSelectPlace } = this.props
     // Add class 'selected' to place that is selected on the map
     let className;
     if (selectedPlace) {
@@ -15,7 +15,7 @@ class Place extends Component {
     }
 
     return (
-      <li className={className}>
+      <li onClick={() => {onSelectPlace(place)}} className={className}>
         {place.name}
       </li>
     )

@@ -29,7 +29,13 @@ class Map extends Component {
           position={{ lat: selectedPlace.position.lat, lng: selectedPlace.position.lng }}
           options={{pixelOffset: new google.maps.Size(-2,-40)}}
           onCloseClick={() => { onSelectPlace(null) }}>
-          <div>Hey</div>
+          <div className="infowindow"><h2>{selectedPlace.name}</h2>
+            <div>
+              <img src={selectedPlace.wikiImg} alt=""></img>
+              <p>{selectedPlace.wikiDesc}</p>
+              <a href={selectedPlace.wikiHref} target="_blank">Go To the Wikipedia page</a>
+            </div>
+          </div>
         </InfoWindow>
       )}
       </GoogleMap>

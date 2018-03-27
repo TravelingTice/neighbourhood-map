@@ -4,7 +4,7 @@ import Place from './Place';
 
 class List extends Component {
   render() {
-    const { updateQuery, query, places, selectedPlace } = this.props
+    const { updateQuery, query, places, selectedPlace, onSelectPlace } = this.props
 
     return (
       <div className="list">
@@ -21,6 +21,7 @@ class List extends Component {
                 key={index}
                 place={place}
                 selectedPlace={selectedPlace}
+                onSelectPlace={onSelectPlace}
                 />
             ))}
           </ul>

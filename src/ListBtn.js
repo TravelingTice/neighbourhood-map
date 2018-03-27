@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 function ListBtn(props) {
   const txt = props.isListShowing ? 'Hide list' : 'Show list';
