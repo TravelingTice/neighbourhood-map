@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 function Place(props) {
   // Add class 'selected' to place that is selected on the map

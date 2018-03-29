@@ -21,6 +21,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - This application is made using the [React](https://reactjs.org/) Framework
 - 3 Additional packages have been used: `react-google-maps`, `escape-string-regexp` and `sort-by`. (See `package.json`)
 - The [WikiPedia API](https://www.mediawiki.org/wiki/API:Main_page) has been used to fetch the information for the places. *Some of the places only had a WikiPedia page in Dutch, so there are some Dutch examples between them*
+- The application includes a production-mode only service-worker provided by `create-react-app`. More details at [Deploy to Production](#deploy-to-production)
 
 ## Source files:
 ```bash
@@ -44,3 +45,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     ├── index.css # Global styles. You probably won't need to change anything here.
     └── index.js # You should not need to modify this file. It is used for DOM rendering only.
 ```
+
+## Deploy to Production
+
+To create a production version of the app, run the command: `npm run build` and a folder will be created including a version of the app, ready to be deployed.
+
+### Service worker
+
+The production version also includes a service worker that caches the website for use when the user is disconnected from the internet. However, this service worker will only work:
+1. On browsers and devices that support the service worker
+2. Only on HTTPS websites
