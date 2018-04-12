@@ -17,6 +17,8 @@ header {
 header h1 {
   margin: auto;
   font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
 }
 
 .hide-list-btn {
